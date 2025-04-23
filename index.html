@@ -12,6 +12,21 @@
 <div id="ggbApplet2"></div>
   
 <script>
+
+	function ggbOnInit(param) {
+	if (param == "ggbApplet1") {
+		// init update listeners for ggbApplet1
+		ggbApplet.registerObjectUpdateListener("\alpha", "abcListener");
+		ggbApplet.registerObjectUpdateListener("\beta", "abcListener");
+		ggbApplet.registerObjectUpdateListener("\gamma", "abcListener");
+	}
+}
+ 
+function abcListener(objName) {
+      // get value from applet1 and set value in applet2	
+	var changedValue = ggbApplet.getValue(objName);            
+	ggbApplet2.setValue(objName, changedValue);		
+}
 var params1 = {
 "id": "ggbApplet1",
 "width":800,
