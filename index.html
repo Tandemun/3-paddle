@@ -4,12 +4,25 @@
   <meta charset="UTF-8">
   <title>3-Paddle Polarization Controller</title>
   <script src="https://www.geogebra.org/apps/deployggb.js"></script>
-  <style>  </style>
+  <style>
+  #applet-container {
+    display: flex;
+    gap: 20px; /* отступ между апплетами */
+    justify-content: center; /* по центру экрана */
+    align-items: flex-start; /* выравнивание по верхнему краю */
+  }
+
+  #ggbApplet1, #ggbApplet2 {
+    border: 1px solid #ccc; /* необязательно — просто для наглядности */
+  }
+</style>
 </head>
 <body>
 
-<div id="ggbApplet1"></div>
-<div id="ggbApplet2"></div>
+<div id="applet-container">
+  <div id="ggbApplet1"></div>
+  <div id="ggbApplet2"></div>
+</div>
   
 <script>
 
