@@ -6,31 +6,76 @@
   <script src="https://www.geogebra.org/apps/deployggb.js"></script>
   
 	<style>
-		#applet-container {
-			display: flex;
-			flex-direction: row; /* По умолчанию — горизонтально */
-			gap: 20px;
-			flex-wrap: wrap; /* На всякий случай */
-			justify-content: center;
-			align-items: flex-start;
+	  body {
+		font-family: sans-serif;
+		margin: 20px;
+		line-height: 1.6;
+	  }
+
+	  h1 {
+		text-align: center;
+		margin-bottom: 40px;
+	  }
+
+	  .container {
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+		align-items: flex-start;
+		flex-wrap: wrap;
+	  }
+
+	  .column {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 600px;
+	  }
+
+	  .text-block {
+		height: 150px; /* Alignment by height of headings+text */
+		margin-bottom: 10px;
+	  }
+
+	  .applet {
+		width: 600px;
+		height: 600px;
+	  }
+
+	  @media (max-width: 1260px) {
+		.container {
+		  flex-direction: column;
+		  align-items: center;
 		}
-		@media (max-width: 768px) {
-			#applet-container {
-				flex-direction: column;
-				align-items: center;
-			}
+
+		.text-block {
+		  height: auto;
 		}
-		#ggbApplet1, #ggbApplet2 {
-			max-width: 100%;
-      border: 1px solid #ccc; /* необязательно — просто для наглядности */
-		}
+	  }
 	</style>
 </head>
 <body>
 
-<div id="applet-container">
-  <div id="ggbApplet1"></div>
-  <div id="ggbApplet2"></div>
+<h1>Interactive Model of a 3-Paddle Polarization Controller</h1>
+
+<div class="container">
+  <!-- Left column -->
+  <div class="column">
+    <div class="text-block">
+      <h2>3-Paddle Polarization Controller</h2>
+      <p>This is a model of a classical manual 3-paddle polarization controller. Use the sliders to adjust paddle rotation angles α, β, and γ.</p>
+    </div>
+    <div id="ggbApplet1" class="applet"></div>
+  </div>
+
+  <!-- Right column -->
+  <div class="column">
+    <div class="text-block">
+      <h2>State of Polarization</h2>
+      <p>This visualization shows the evolution of the state of polarization (SOP) at different stages within the controller. The top displays the Poincaré sphere, while the bottom shows the corresponding polarization ellipses.</p>
+    </div>
+    <div id="ggbApplet2" class="applet"></div>
+  </div>
 </div>
   
 <script>
@@ -45,81 +90,81 @@ function ggbOnInit(param) {
 }
  
 function abcListener(objName) {
-      // get value from applet1 and set value in applet2	
+    // get value from applet1 and set value in applet2	
 	console.log("Updated: ", objName);
 	var changedValue = ggbApplet1.getValue(objName);
 	console.log("Value: ", changedValue);
 	ggbApplet2.setValue(objName, changedValue);		
 }
 var params1 = {
-"id": "ggbApplet1",
-"width":600,
-"height":600,
-"showMenuBar":false,
-"showAlgebraInput":false,
-"showToolBar":false,
-"showToolBarHelp":false,
-"showResetIcon":false,
-"enableLabelDrags":false,
-"enableShiftDragZoom":false,
-"enableRightClick":false,
-"errorDialogsActive":false,
-"useBrowserForJS":true,
-"allowStyleBar":false,
-"preventFocus":false,
-"showZoomButtons":false,
-"showResetIcon": true,
-"capturingThreshold":3,
-// add code here to run when the applet starts
-"appletOnLoad":function(api){ /* api.evalCommand('Segment((1,2),(3,4))');*/ },
-"showFullscreenButton":false,
-"scale":1,
-"disableAutoScale":true,
-"allowUpscale":false,
-"clickToLoad":false,
-"appName":"classic",
-"buttonRounding":0.7,
-"buttonShadows":false,
-"language":"en",
-// use this instead of ggbBase64 to load a material from geogebra.org
-"material_id":"pts6vg4r",
-// use this instead of ggbBase64 to load a .ggb file
-// "filename":"myfile.ggb",
+	"id": "ggbApplet1",
+	"width":600,
+	"height":600,
+	"showMenuBar":false,
+	"showAlgebraInput":false,
+	"showToolBar":false,
+	"showToolBarHelp":false,
+	"showResetIcon":false,
+	"enableLabelDrags":false,
+	"enableShiftDragZoom":false,
+	"enableRightClick":false,
+	"errorDialogsActive":false,
+	"useBrowserForJS":true,
+	"allowStyleBar":false,
+	"preventFocus":false,
+	"showZoomButtons":false,
+	"showResetIcon": false,
+	"capturingThreshold":3,
+	// add code here to run when the applet starts
+	"appletOnLoad":function(api){ /* api.evalCommand('Segment((1,2),(3,4))');*/ },
+	"showFullscreenButton":false,
+	"scale":1,
+	"disableAutoScale":true,
+	"allowUpscale":false,
+	"clickToLoad":false,
+	"appName":"classic",
+	"buttonRounding":0.7,
+	"buttonShadows":false,
+	"language":"en",
+	// use this instead of ggbBase64 to load a material from geogebra.org
+	"material_id":"pts6vg4r",
+	// use this instead of ggbBase64 to load a .ggb file
+	// "filename":"myfile.ggb",
 
 };
 
 var params2 = {
-"id": "ggbApplet2",
-"width":600,
-"height":600,
-"showMenuBar":false,
-"showAlgebraInput":false,
-"showToolBar":false,
-"showToolBarHelp":false,
-"showResetIcon":false,
-"enableLabelDrags":false,
-"enableShiftDragZoom":false,
-"enableRightClick":false,
-"errorDialogsActive":false,
-"useBrowserForJS":true,
-"allowStyleBar":false,
-"preventFocus":false,
-"showZoomButtons":false,
-"showResetIcon": true,
-"capturingThreshold":3,
-// add code here to run when the applet starts
-"appletOnLoad":function(api){ /* api.evalCommand('Segment((1,2),(3,4))');*/ },
-"showFullscreenButton":false,
-"scale":1,
-"disableAutoScale":true,
-"allowUpscale":false,
-"clickToLoad":false,
-"appName":"classic",
-"buttonRounding":0.7,
-"buttonShadows":false,
-"language":"en",
-// use this instead of ggbBase64 to load a material from geogebra.org
-"material_id":"hdmsanwn",
+	"id": "ggbApplet2",
+	"width":600,
+	"height":600,
+	"showMenuBar":false,
+	"showAlgebraInput":false,
+	"showToolBar":false,
+	"showToolBarHelp":false,
+	"showResetIcon":false,
+	"enableLabelDrags":false,
+	"enableShiftDragZoom":false,
+	"enableRightClick":true,
+	"errorDialogsActive":false,
+	"useBrowserForJS":true,
+	"allowStyleBar":false,
+	"preventFocus":false,
+	"showZoomButtons":false,
+	"showResetIcon": false,
+	"capturingThreshold":3,
+	// add code here to run when the applet starts
+	"appletOnLoad":function(api){ /* api.evalCommand('Segment((1,2),(3,4))');*/ },
+	"showFullscreenButton":false,
+	"scale":1,
+	"disableAutoScale":true,
+	"allowUpscale":false,
+	"clickToLoad":false,
+	"appName":"classic",
+	"buttonRounding":0.7,
+	"buttonShadows":false,
+	"language":"en",
+	// use this instead of ggbBase64 to load a material from geogebra.org
+	"material_id":"hdmsanwn",
 };
   
   var applet1 = new GGBApplet(params1, true);
