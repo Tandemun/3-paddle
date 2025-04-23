@@ -92,7 +92,7 @@ function ggbOnInit(param) {
 function abcListener(objName) {
     // get value from applet1 and set value in applet2	
 	console.log("Updated: ", objName);
-	var changedValue = ggbApplet1.getValue(objName);
+	var changedValue = 2*ggbApplet1.getValue(objName);/* Multiple by 2 due to double of angles on the Poincare sphere */
 	console.log("Value: ", changedValue);
 	ggbApplet2.setValue(objName, changedValue);		
 }
