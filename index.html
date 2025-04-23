@@ -172,6 +172,15 @@ var params2 = {
   window.onload = function() {
 	  applet1.inject('ggbApplet1');
 	  applet2.inject('ggbApplet2');
+	  // Запрет прокрутки мыши (зум колесиком)
+	  document.getElementById('ggbApplet2').addEventListener('wheel', function (e) {
+	    e.preventDefault();
+	    }, { passive: false });
+	
+	  // Запрет пинча на мобильных
+	  document.getElementById('ggbApplet2').addEventListener('touchmove', function (e) {
+	    if (e.touches.length > 1) e.preventDefault();
+	    }, { passive: false });
 };
 </script>
 
